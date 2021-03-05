@@ -3,29 +3,15 @@
     <section class="intro">
       <h1>Get latest tech news!</h1>
     </section>
-    <section class="featured-posts">
-      <PostPreview
-        id="1"
-        thumbnail="https://hub.packtpub.com/wp-content/uploads/2018/05/programming.jpg"
-        title="Hello There!"
-        previewText="My First Post"
-      />
-
-      <PostPreview
-        id="2"
-        thumbnail="https://hub.packtpub.com/wp-content/uploads/2018/05/programming.jpg"
-        title="Hello again!"
-        previewText="My Second Post"
-      />
-    </section>
+    <PostList />
   </div>
 </template>
 
 <script>
-import PostPreview from '@/components/Posts/PostPreview'
+import PostList from '@/components/Posts/PostList'
 export default {
   components: {
-    PostPreview,
+    PostList,
   },
 }
 </script>
@@ -60,14 +46,5 @@ export default {
   .intro h1 {
     font-size: 2rem;
   }
-}
-
-.featured-posts {
-  display: flex;
-  padding: 20px;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
 }
 </style>
