@@ -1,30 +1,55 @@
 <template>
   <div class="single-post">
     <section class="post">
-        <h1 class="post-title">Title</h1>
-        <div class="post-details">
-            <div class="post-detail">Last Updated On XXX</div>
-            <div class="post-detail">Written By NAME</div>
+      <h1 class="post-title">{{ loadedPost.title }}</h1>
+      <div class="post-details">
+        <div class="post-detail">
+          Last Updated On {{ loadedPost.updatedDate }}
         </div>
-        <p class="post-content">
-            Content of the post
-        </p>
+        <div class="post-detail">Written By {{ loadedPost.author }}</div>
+      </div>
+      <p class="post-content">{{ loadedPost.content }}</p>
     </section>
     <section class="post-feedback">
-        <p>Let me know what you think about the post!</p>
-        <a href="feedback@my-awesome-domain.com">feedback@my-awesome-domain.com</a>
+      <p>Let me know what you think about the post!</p>
+      <a href="feedback@my-awesome-domain.com"
+        >feedback@my-awesome-domain.com</a
+      >
     </section>
   </div>
 </template>
 
 <script>
 export default {
-
+  asyncData(context) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({
+          loadedPost: {
+            id: '1 ',
+            title: 'My Awesome Post (ID: ' + context.route.params.id + ')',
+            previewText: 'Hey look at my awesome new post!',
+            author: 'Jesper',
+            updatedDate: new Date(),
+            content: 'Dummy text',
+            thumbnail:
+              'https://hub.packtpub.com/wp-content/uploads/2018/05/programming.jpg',
+          },
+        })
+      }, 1000)
+    })
+      .then((data) => {
+        return data
+      })
+      .catch((e) => {
+        context.error(new Error())
+      })
+  },
 }
 </script>
 
 <style scoped>
-    .single-post {
+.single-post {
   padding: 30px;
   text-align: center;
   box-sizing: border-box;
